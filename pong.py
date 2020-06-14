@@ -8,7 +8,7 @@ clock = pygame.time.Clock()
 screen_width = 800
 screen_height = 500
 screen = pygame.display.set_mode((screen_width,screen_height))
-pygame.display.set_caption('Hamzah\'s Pong')
+pygame.display.set_caption('game')
 
 # Colors
 light_grey = (200,200,200)
