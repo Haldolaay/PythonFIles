@@ -1,11 +1,20 @@
-first = [1,2,3,4]
-second = ['a','b','c']
-def exchange_with(first, second):
-    aReverse = second[::-1]
-    bReverse = first[::-1]
-    first= aReverse
-    second = bReverse
-    return(first,second)
-   
-(first,second)= exchange_with(first,second)
-print(' first = ',first, '\n second = ',second)   
+import os
+import PyPDF2
+from PyPDF2 import PdfFileReader
+
+fp = open('dealerTrack.pdf')
+pdfFile = PdfFileReader(fp)
+if pdfFile.isEncrypted:
+    try:
+        pdfFile.decrypt('')
+        print('File Decrypted (PyPDF2)')
+    except:
+        command = ("cp "+ 'dealerTrack.pdf' +
+            " temp.pdf; qpdf --password='' --decrypt temp.pdf " + filename
+            + "; rm temp.pdf")
+        os.system(command)
+        print('File Decrypted (qpdf)')
+        fp = open(filename)
+        pdfFile = PdfFileReader(fp)
+else:
+    print('File Not Encrypted')
