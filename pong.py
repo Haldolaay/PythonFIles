@@ -48,8 +48,12 @@ while True:
                 player1_speed -=7
             if event.key == pygame.K_UP:
                 player1_speed +=7
-        ball_movement()
+    ball_movement()
     player1.y +=player1_speed
+    if player1.top <=0:
+        player1.top = 0
+    if player1.bottom >= screen_height:
+        player1.bottom = screen_height
 	# Visuals 
     screen.fill(bg_color)
     pygame.draw.rect(screen, rect_color, player1)
