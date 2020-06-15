@@ -1,5 +1,15 @@
 import pygame, sys
 
+def ball_movement():
+    global horizontal_speed, vertical_speed
+    ball.x += horizontal_speed
+    ball.y += vertical_speed
+    if ball.top <= 0 or ball.bottom >= screen_height:
+        vertical_speed *= -1
+    if ball.right >= screen_width or ball.left <= 0:
+        horizontal_speed *= -1
+    if ball.colliderect(player1) or ball.colliderect(player2):
+        horizontal_speed *= -1
 # General setup
 pygame.init()
 clock = pygame.time.Clock()
@@ -22,19 +32,24 @@ player1 = pygame.Rect(screen_width - 20, screen_height / 2 - 70, 10,140)
 player2 = pygame.Rect(10, screen_height / 2 - 70, 10,140)
 horizontal_speed = 5
 vertical_speed = 5
+player1_speed = 0
 while True:
     for event in pygame.event.get():
-	    if event.type == pygame.QUIT:
-		    pygame.quit()
-		    sys.exit()
-    ball.x += horizontal_speed
-    ball.y += vertical_speed
-    if ball.top <= 0 or ball.bottom >= screen_height:
-        vertical_speed *= -1
-    if ball.right >= screen_width or ball.left <= 0:
-        horizontal_speed *= -1
-    if ball.colliderect(player1) or ball.colliderect(player2):
-        horizontal_speed *= -1
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                player1_speed +=7
+            if event.key == pygame.K_UP:
+                player1_speed -=7
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_DOWN:
+                player1_speed -=7
+            if event.key == pygame.K_UP:
+                player1_speed +=7
+        ball_movement()
+    player1.y +=player1_speed
 	# Visuals 
     screen.fill(bg_color)
     pygame.draw.rect(screen, rect_color, player1)
