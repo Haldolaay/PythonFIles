@@ -18,3 +18,9 @@ if pdfFile.isEncrypted:
         pdfFile = PdfFileReader(fp)
 else:
     print('File Not Encrypted')
+    
+    
+    # look into this astrix function later
+    r=4
+for x in range(r):
+    print(____*(r-x-1)+'*'*(2*x+1))
