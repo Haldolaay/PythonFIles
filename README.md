@@ -28,3 +28,7 @@ index2.py//  this code will create a panda dataframe from the list we got from c
         // add surprise
  
  speach.py// audio to text api from speach recognition // only works on the first sentance lol
+ 
+ collections.py// trying out collections
+ 
+ fileToFile.py // copying text from one file to another, trying to change the value to a dictionary first
